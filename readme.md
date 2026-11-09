@@ -1,14 +1,24 @@
 # Oracle Conversions
 
-This project serves as Miniproject 1 for the Erdos Institute, Fall 2026 for the Quantum Computing Bootcamp.
+This repository houses my Miniproject 1 and Miniproject 2 for the Erdos Institute, Fall 2026 for the Quantum Computing Bootcamp.
 
-The goal of the project is to convert from one quantum representation of information (a function oracle) to another (a phase oracle). See prob_oracles.ipynb for more information.
+The goal of the Miniproject 1 is to convert from one quantum representation of information (a function oracle) to another (a phase oracle). See notebooks/prob_oracles.ipynb for more information.
+
+The goal of Miniproject 2 is to implement the Durr-Hoyer algorithm, which is an application of Grover's algorithm used for minimization. We use the algorithm to decode classical error correcting codes. See search.ipynb for more information
 
 ## In this Document
 
-- src:
-    This folder contains three .py files that implement the conversion.
-- prob_orcales.ipynb:
-    This Python notebook contains a description of the project and some examples.
-- tests.py:
-    Run this Python file to check that the code works.
+- src (the main codebase):
+    - oracle_objects (a folder of classes for our probabilty oracles)
+    - linear_combination_of_unitaries.py
+    - oracle_conversions.py
+    - phase_estimation.py
+    - search.py (main sourcecode for Miniproject 2)
+- notebooks (for explaining the projects):
+    - prob_orcales.ipynb:
+        This Python notebook describes Miniproject1.
+    - search.ipynb:
+        This Python notebook describes Miniproject2.
+- tests (for checking correctness):
+    - test_oracles.py tests our implementation and conversion of several oracle types, and roughly corresponds to Miniproject 1.
+    - test_search.py tests that we are correctly applying

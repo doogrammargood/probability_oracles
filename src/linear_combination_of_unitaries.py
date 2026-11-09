@@ -53,7 +53,8 @@ def linear_combination_of_unitaries_circuit(alphas:list[float],Y:QuantumCircuit)
 
     #This applies the n-controled Y gate construction between the aux register and the target register.
     for i, _ in enumerate(aux_register):
-        Yexp = Y.power(2**i).to_gate()
+        #Yexp = Y.power(2**i).to_gate()
+        Yexp = Y.repeat(2**i).to_gate()
         total_circuit.append(Yexp.control(1),[aux_register[i], *target_register])
 
     

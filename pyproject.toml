@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "probability-oracles"
+version = "0.1.0"
+description = "Quantum probability-oracle experiments"
+requires-python = ">=3.12.3,<3.14"
+dependencies = [
+    "numpy",
+    "scipy",
+    "matplotlib",
+    "qiskit>=2.5,<2.6",
+    "pyqsp",
+]
+
+[project.optional-dependencies]
+notebooks = [
+    "ipython",
+    "jupyter",
+    "ipykernel",
+]
+dev = [
+    "pytest",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
