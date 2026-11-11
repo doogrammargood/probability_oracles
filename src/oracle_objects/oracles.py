@@ -6,18 +6,12 @@ A class inheriting from Oracle (e.g. FunctionOracle) needs to provide a way to c
 Two descendants down from Oracle, we expect a class that actually defines the method .circuit() and a function f.
 """
 
-import platform
-from importlib.metadata import version
 from abc import ABC, abstractmethod
-from qiskit.circuit.library import DiagonalGate
-from qiskit.quantum_info import random_unitary,Operator
-
-import matplotlib.pyplot as plt
-import math
-import numpy as np
-from qiskit import QuantumCircuit, QuantumRegister
+from qiskit import QuantumRegister, QuantumCircuit
 from qiskit.quantum_info import Statevector
-from phase_estimation import phase_estimation_circuit
+import numpy as np
+import math
+
 #Convention: Throughout this code, I will always keep the working qubits at the top (lower binary indices) and the auxillary qubits at the bottom (higher binary indices)
 
 
@@ -34,11 +28,9 @@ class Oracle(ABC):
         """
         Returns a circuit that does the oracle's job
         """
-        pass
 
     @abstractmethod
     def check_guarantee(self):
         """
         Checks that the oracle behaves as expected with respect to its function.
         """
-        pass

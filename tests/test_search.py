@@ -1,13 +1,11 @@
+from unittest import TestCase
+from qiskit import QuantumCircuit, QuantumRegister
+import numpy as np
+
+from error_correcting_codes import *
 from oracle_conversions import *
-from heavy_sampling_circuit import *
-from qiskit.quantum_info import random_unitary,Operator
-from qiskit.circuit.library import DiagonalGate
 from phase_estimation import *
 from search import *
-from error_correcting_codes import *
-
-import unittest
-from unittest import TestCase
 
 
 class CreateTests(TestCase):
@@ -86,6 +84,3 @@ class CreateTests(TestCase):
 
             assert f"{logical_word:0{L.k}b}"== L.decode_classical(encoded_word)
             assert classical_decode==quantum_decode
-
-
-            #print(f"{logical_word:0{L.k}b}", L.decode_classical(encoded_word))

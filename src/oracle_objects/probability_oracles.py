@@ -1,16 +1,10 @@
-import platform
-from importlib.metadata import version
-from abc import ABC, abstractmethod
-from qiskit.circuit.library import DiagonalGate
-from qiskit.quantum_info import random_unitary,Operator
 
-import matplotlib.pyplot as plt
-import math
 import numpy as np
 from qiskit import QuantumCircuit, QuantumRegister
 from qiskit.quantum_info import Statevector
-from phase_estimation import phase_estimation_circuit
+
 from oracle_objects.oracles import *
+
 #Convention: Throughout this code, I will always keep the working qubits at the top (lower binary indices) and the auxillary qubits at the bottom (higher binary indices)
 
 
@@ -39,9 +33,7 @@ class ProbabilityOracleExample(ProbabilityOracle):
         num_working_qubits = 3
         num_aux_qubits = 0
         def f(x):
-            if x == 0:
-                return 0.5
-            elif x == 2**self.num_working_qubits-1:
+            if x == 0 or x == 2**self.num_working_qubits-1:
                 return 0.5
             else:
                 return 0

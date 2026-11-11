@@ -1,13 +1,15 @@
-from oracle_conversions import *
-from heavy_sampling_circuit import *
-from qiskit.quantum_info import random_unitary,Operator
-from qiskit.circuit.library import DiagonalGate
-from phase_estimation import *
-from search import *
-from error_correcting_codes import *
-
 import unittest
 from unittest import TestCase
+import numpy as np
+from qiskit.circuit.library import DiagonalGate
+from qiskit.quantum_info import Operator, random_unitary
+from qiskit import QuantumCircuit, QuantumRegister
+
+
+from error_correcting_codes import *
+from oracle_conversions import *
+from phase_estimation import *
+from search import *
 
 
 class CreateTests(TestCase):
@@ -131,6 +133,9 @@ class CreateTests(TestCase):
         U.check_guarantee()
 
     def test_phase_estimation(self):
+        """
+        Gives an example of phase estimation. Currently, this doesnt' actually test anything.
+        """
         qc = QuantumCircuit(2)
         qc.append(DiagonalGate([1,np.exp(0.5j*2*np.pi), np.exp(0.25j *2*np.pi), np.exp(0.125j*2*np.pi)]),qargs=qc.qubits)
         pe = phase_estimation_circuit(5,qc)
@@ -167,6 +172,8 @@ class CreateTests(TestCase):
         
     def test_mark_from_phase_oracle(self):
         """
+        Tests that a phase oracle can be converted to a binary oracle via phase estimation,
+        and then we can mark the phases that are larger than a given value
         """
         def f(x):
             return [0.5, 0.1, 0.3, 0.1 ][x]
@@ -177,7 +184,7 @@ class CreateTests(TestCase):
 
         B3 = compose_binary_oracles(B1,B2)
         B3.check_guarantee()
-        assert all([ B3.f(index) == 1 if f(index)>threshold else B3.f(index)==0 for index in range(4)])
+        assert all(B3.f(index) == 1 if f(index)>threshold else B3.f(index)==0 for index in range(4))
 
     def test_marking_binary_oracle_to_phase_circuit(self):
         B = BinaryOracleFromLinear(5,2**5-1)

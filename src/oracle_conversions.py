@@ -1,16 +1,13 @@
-import platform
-from importlib.metadata import version
-from abc import ABC, abstractmethod
 
-import matplotlib.pyplot as plt
 import math
+
 import numpy as np
 from qiskit import QuantumCircuit, QuantumRegister
-from qiskit.quantum_info import Statevector
 
-from oracle_objects.oracle_classes import *
 from linear_combination_of_unitaries import *
+from oracle_objects.oracle_classes import *
 from phase_estimation import phase_estimation_circuit
+
 
 def function_oracle_to_phase_oracle_circuit(U:FunctionOracle, epsilon=0.001) -> QuantumCircuit:
     """
@@ -36,7 +33,7 @@ def function_oracle_to_phase_oracle_circuit(U:FunctionOracle, epsilon=0.001) -> 
     Grover.global_phase = math.pi #ChatGPT helped me realize that this global phase is missing from the paper.
 
     epsilon_prime = epsilon / 10
-    M = int(math.ceil(2*math.log(1/epsilon_prime)/(math.log(math.log(1/epsilon_prime)))))
+    M = math.ceil(2*math.log(1/epsilon_prime)/(math.log(math.log(1/epsilon_prime))))
     betas = [ sum([math.comb(2*k, k-m) * (-1)**m*(1j)**k/(math.factorial(k)* 2**(2*k)) for k in range(abs(m), M+1)]) for m in range(-M,M+1)] #just above Equation 15 in reference
 
     beta = sum([abs(b) for b in betas]) #The L_1 norm
@@ -129,8 +126,8 @@ def probability_oracle_to_function_oracle(U:ProbabilityOracle) -> FunctionOracle
     return FunctionOracleFromCircuitAndFunction(U.num_working_qubits,U.num_aux_qubits+1,lambda: circuit, U.f)
 
 def phase_oracle_to_binary_oracle(O: PhaseOracle,accuracy = 0.01, error_prob=0.01) -> BinaryOracle:
-    num_eval_qubits = int(math.ceil(-np.log2(accuracy)))+1
-    num_aux_qubits = int(math.ceil(np.log2(2+1/(2*error_prob))))-1
+    num_eval_qubits = math.ceil(-np.log2(accuracy))+1
+    num_aux_qubits = math.ceil(np.log2(2+1/(2*error_prob)))-1
     total_num_qubits = num_eval_qubits + num_aux_qubits +O.num_working_qubits + O.num_aux_qubits
 
     circuit = QuantumCircuit(total_num_qubits)

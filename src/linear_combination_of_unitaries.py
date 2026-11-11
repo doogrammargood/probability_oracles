@@ -1,6 +1,8 @@
-from qiskit.circuit.library import DiagonalGate
-from qiskit import QuantumCircuit, QuantumRegister
 import math
+
+from qiskit import QuantumCircuit, QuantumRegister
+from qiskit.circuit.library import DiagonalGate
+
 
 def linear_combination_of_unitaries_circuit(alphas:list[float],Y:QuantumCircuit) -> QuantumCircuit:
     """
@@ -13,7 +15,7 @@ def linear_combination_of_unitaries_circuit(alphas:list[float],Y:QuantumCircuit)
     Reference: Lemma 8:
     https://arxiv.org/pdf/1511.02306
     """
-    num_aux_qubits = int(math.ceil(math.log(len(alphas),2)))
+    num_aux_qubits = math.ceil(math.log2(len(alphas)))
     aux_register = QuantumRegister(num_aux_qubits,"aux register")
     target_register = QuantumRegister(Y.num_qubits,"target register")
     total_circuit = QuantumCircuit(target_register,aux_register)

@@ -1,5 +1,7 @@
-from oracle_objects.oracles import *
 from qiskit.circuit.library import IntegerComparator, WeightedAdder
+
+from oracle_objects.oracles import *
+
 
 #A binary oracle records a function f:Z_2^n -> Z_2^d by sending |x>|0>|0> -> |x>|f(x)>|junk>.
 class BinaryOracle(Oracle):

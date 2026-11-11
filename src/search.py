@@ -1,4 +1,9 @@
 from oracle_conversions import *
+from qiskit import QuantumCircuit, QuantumRegister
+import math
+import numpy as np
+
+
 def grover_operator(initial_unitary, phase_marking_unitary) -> QuantumCircuit:
     """
     Input: initial_unitary and phase_marking unitary are quantum circuits.

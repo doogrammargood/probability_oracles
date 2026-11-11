@@ -1,6 +1,10 @@
-from search import *
 from oracle_conversions import *
-class LinearCode(object):
+from search import *
+from qiskit import QuantumCircuit, QuantumRegister
+import numpy as np
+
+
+class LinearCode:
     def __init__(self, H=None, G=None):
         """
         Following the notation of Macwilliams and Sloane.

@@ -2,8 +2,8 @@
 This file implements the phase estimation circuit.
 """
 
-from qiskit.circuit.library import QFTGate,PermutationGate
-from qiskit import QuantumRegister, QuantumCircuit
+from qiskit import QuantumCircuit, QuantumRegister
+from qiskit.circuit.library import PermutationGate, QFTGate
 
 
 def phase_estimation_circuit(num_evaluation_qubits, unitary, name="QPE"):

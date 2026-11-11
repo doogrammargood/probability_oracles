@@ -1,4 +1,7 @@
 from oracle_objects.oracles import *
+from qiskit.circuit.library import DiagonalGate
+
+
 
 #A PhaseOracle records the value of a function f by thanging the phase of |x> by e^{if(x)}.
 class PhaseOracle(Oracle):

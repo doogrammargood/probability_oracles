@@ -1,5 +1,6 @@
 from oracle_objects.oracles import *
 
+
 #A Function Oracle records the value of a function f as the probability of measuring 1 in the last qubit.
 class FunctionOracle(Oracle):
     def __init__(self, num_working_qubits,num_aux_qubits, f):
