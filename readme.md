@@ -1,6 +1,6 @@
 # Erdos Institute Miniprojects
 
-This repository houses my Miniproject 1 and Miniproject 2 for the Erdos Institute, Fall 2026 for the Quantum Computing Bootcamp.
+This repository houses my Miniproject 1 and Miniproject 2 for the Erdos Institute, Fall 2026 for the Quantum Computing Bootcamp under Professor Vyom Patel.
 
 ## Miniproject 1: Oracle Conversions
 
